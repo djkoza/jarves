@@ -13,6 +13,7 @@
 
 .jarves-slot {
     min-height: 20px;
+    display: inline-block;
 }
 
 .jarves-slot-highlight {
