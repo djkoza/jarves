@@ -545,6 +545,7 @@ class FrontendRouter
             $urls = $this->pageStack->getCachedUrlToPage($domain->getId());
 
             $possibleUrl = $url;
+
             $id = false;
 
             while (1) {
@@ -558,6 +559,10 @@ class FrontendRouter
                 } else {
                     break;
                 }
+            }
+
+            if(!$id && empty($possibleUrl) && $this->pageStack->isAdmin()){
+                return null;
             }
 
             if (!$id) {
