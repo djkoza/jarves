@@ -49,7 +49,10 @@ jarves.ContentTypes.Text = new Class({
                 toolbar_items_size: 'small',
                 toolbar1: "formatselect | undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect fontselect fontsizeselect",
                 toolbar2: "searchreplace | bullist numlist | outdent indent blockquote | link unlink anchor image media code | forecolor backcolor",
-                toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | ltr rtl | visualchars visualblocks nonbreaking template pagebreak"
+                toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | ltr rtl | visualchars visualblocks nonbreaking template pagebreak",
+                force_br_newlines : false,
+                force_p_newlines : false,
+                forced_root_block : ''
             },
             full: {
                 plugins: [
@@ -73,7 +76,7 @@ jarves.ContentTypes.Text = new Class({
     createLayout: function() {
         this.main = new Element('div', {
             contentEditable: true,
-            html: '<p><br/></p>',
+            html: '',
             'class': 'jarves-content-text selectable'
         }).inject(this.getContentInstance().getContentContainer());
 
