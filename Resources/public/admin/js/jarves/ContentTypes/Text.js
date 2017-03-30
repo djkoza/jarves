@@ -135,7 +135,7 @@ jarves.ContentTypes.Text = new Class({
         this.value = value;
         this.oldData = this.value;
 
-        this.main.set('html', this.value || '<p><br/></p>');
+        this.main.set('html', this.value || '&nbsp;');
     },
 
     getValue: function() {
