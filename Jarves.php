@@ -34,8 +34,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+/**
+ * @todo Move trait from Tests directory/namespace
+ */
+use Jarves\Tests\ContainerHelperTrait;
+
 class Jarves
 {
+    use ContainerHelperTrait;
+
     /**
      * @var Configuration\Configs|Configuration\Bundle[]
      */
@@ -87,6 +94,11 @@ class Jarves
     private $jarvesConfig;
 
     /**
+     * @var appDevDebugProjectContainer|appProdProjectContainer
+     */
+    private $container;
+
+    /**
      * @param JarvesConfig $jarvesConfig
      * @param string $adminPrefix
      * @param string $cacheDir
@@ -104,16 +116,18 @@ class Jarves
                          FieldTypes $fieldTypes)
     {
         Configuration\Model::$serialisationJarvesCore = $this;
-        $this->adminPrefix = $adminPrefix;
-        $this->requestStack = $requestStack;
-        $this->cacheDir = $cacheDir;
-        $this->rootDir = $rootDir;
-        $this->environment = $environment;
-        $this->debugMode = $debugMode;
-        $this->kernel = $kernel;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->fieldTypes = $fieldTypes;
-        $this->jarvesConfig = $jarvesConfig;
+
+        $this->adminPrefix      = $adminPrefix;
+        $this->requestStack     = $requestStack;
+        $this->cacheDir         = $cacheDir;
+        $this->rootDir          = $rootDir;
+        $this->environment      = $environment;
+        $this->debugMode        = $debugMode;
+        $this->kernel           = $kernel;
+        $this->eventDispatcher  = $eventDispatcher;
+        $this->fieldTypes       = $fieldTypes;
+        $this->jarvesConfig     = $jarvesConfig;
+        $this->container        = $kernel->getContainer();
     }
 
     /**

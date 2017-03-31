@@ -12,6 +12,9 @@
  * LICENSE file, that was distributed with this source code.
  */
 
+/**
+ * @todo Move trait from Tests directory/namespace
+ */
 namespace Jarves\Tests;
 
 use Jarves\Cache\Cacher;
