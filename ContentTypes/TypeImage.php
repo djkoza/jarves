@@ -22,7 +22,7 @@ class TypeImage extends AbstractType
             $info = json_decode($this->getContent()->getContent(), true);
             if (isset($info['file'])) {
                 $path = substr(is_numeric($info['file']) ? $this->jarves->getWebFileSystem()->getPath($info['file']) : $info['file'], 0);
-                $width = $info['width'] ?: '100%';
+                $width = $info['width'] ?: '';
                 $class = 'jarves-contentType-image align-' . (@$info['align'] ?: 'center');
                 return sprintf('<div class="%s"><img src="%s" width="%s"/></div>', $class, $path, $width);
             }
