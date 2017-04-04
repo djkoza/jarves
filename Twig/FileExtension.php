@@ -74,9 +74,9 @@ class FileExtension extends \Twig_Extension
             $ext = substr($cachePath, $pos);
             $cachePath = substr($cachePath, 0, $pos);
 
-            $cachePath .= '_' . $maxHeight . 'x' . $maxHeight . '.' . $quality . '.' . $ext;
+            $cachePath .= '_' . $maxWidth . 'x' . $maxHeight . '.' . $quality . '.' . $ext;
         } else {
-            $cachePath .= '_' . $maxHeight . 'x' . $maxHeight . '.' . $quality;
+            $cachePath .= '_' . $maxWidth . 'x' . $maxHeight . '.' . $quality;
         }
 
         if (!$this->webFilesystem->has($cachePath)) {
@@ -106,9 +106,9 @@ class FileExtension extends \Twig_Extension
             $ext = substr($cachePath, $pos);
             $cachePath = substr($cachePath, 0, $pos);
 
-            $cachePath .= '_' . $maxHeight . 'x' . $maxHeight . '.' . $quality . $ext;
+            $cachePath .= '_' . $maxWidth . 'x' . $maxHeight . '.' . $quality . $ext;
         } else {
-            $cachePath .= '_' . $maxHeight . 'x' . $maxHeight . '.' . $quality;
+            $cachePath .= '_' . $maxWidth . 'x' . $maxHeight . '.' . $quality;
         }
 
         if (!$this->webFilesystem->has($cachePath)) {
