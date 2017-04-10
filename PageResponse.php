@@ -603,12 +603,18 @@ class PageResponse extends Response
 
         $this->stopwatch->start(sprintf('Render DocType [%s]', $this->getDocType()));
 
+        $themeOptions = array();
+        if($this->pageStack->getCurrentDomain()){
+            $themeOptions = $this->pageStack->getCurrentDomain()->getThemeOptions();
+        }
+
         $data = [
             'pageResponse' => $this,
             'body' => $body,
             'page' => $this->pageStack->getCurrentPage(),
             'domain' => $this->pageStack->getCurrentDomain(),
-            'additionalHeaderTags' => $this->getAdditionalHeaderTags()
+            'additionalHeaderTags' => $this->getAdditionalHeaderTags(),
+            'themeOptions' => $themeOptions
         ];
         $data = array_merge($data, $this->getAssetTags(), $this->getParameters());
 

@@ -117,6 +117,7 @@ class Navigation
             $navigation = $this->get($options);
         }
 
+        $data['options']    = $options;
         $data['navigation'] = $navigation ?: false;
 
         if ($navigation !== false) {
