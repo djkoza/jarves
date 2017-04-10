@@ -46,6 +46,12 @@ services:
          tags:
             - { name: twig.extension }
 
+     jarves.twig.extension.plugin:
+         class: Jarves\Twig\PluginExtension
+         arguments: ["@service_container"]
+         tags:
+            - { name: twig.extension }
+
      jarves.twig.extension.unsearchable:
          class: Jarves\Twig\UnsearchableExtension
          tags:
