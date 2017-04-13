@@ -1220,7 +1220,9 @@ class PageResponse extends Response
     {
         $id = $content;
         if ($content instanceof Content) {
-            $id = $content->getId();
+            if(is_null($id = $content->getId())){
+                return false;
+            }
         }
 
         return isset($this->pluginResponse[$id]) ? $this->pluginResponse[$id] : '';
