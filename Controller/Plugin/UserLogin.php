@@ -70,8 +70,9 @@ class UserLogin extends PluginController
 
         $user = new User();
 
-        $form = $this->formFactory->createBuilder()
-            ->setData($user)
+        $form = $this->formFactory->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', $user, array(
+                'data_class'    => 'Jarves\Model\User'
+            ))
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('save', SubmitType::class, array('label' => 'Register'))
