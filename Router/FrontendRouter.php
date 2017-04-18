@@ -273,6 +273,7 @@ class FrontendRouter
     public function registerPluginRoutes(Node $page)
     {
         $domain = $this->pageStack->getDomain($page->getDomainId());
+        $themeOptions = $domain->getThemeOptions();
 
         $this->stopwatch->start('Register Plugin Routes');
         //add all router to current router and fire sub-request
@@ -284,6 +285,14 @@ class FrontendRouter
                 ->filterByNodeId($page->getId())
                 ->filterByType('plugin')
                 ->find();
+
+            foreach($themeOptions as $item){
+                $content = new Content();
+                $content->setType('plugin');
+                $content->setContent($item);
+
+                $plugins->set(null, $content);
+            }
 
             $this->cacher->setDistributedCache($cacheKey, serialize($plugins));
         } else {

@@ -5,13 +5,13 @@
         <label>User Login</label>
         <controller>jarves.plugin.userlogin:loginForm</controller>
         <routes>
-          <route pattern="login" methods="POST" controller="jarves.plugin.userlogin:doLogin">
+          <route id="userlogin_doLogin" pattern="login" methods="POST" controller="jarves.plugin.userlogin:doLogin">
             <requirement key="username">.+</requirement>
             <requirement key="password">.+</requirement>
           </route>
-          <route pattern="logout" methods="GET" controller="jarves.plugin.userlogin:doLogout"/>
-          <route pattern="register" methods="GET" controller="jarves.plugin.userlogin:registerForm"/>
-          <route pattern="register" methods="POST" controller="jarves.plugin.userlogin:doRegister"/>
+          <route id="userlogin_doLogout" pattern="logout" methods="GET" controller="jarves.plugin.userlogin:doLogout"/>
+          <route id="userlogin_registerForm" pattern="register" methods="GET" controller="jarves.plugin.userlogin:registerForm"/>
+          <route id="userlogin_doRegister" pattern="register" methods="POST" controller="jarves.plugin.userlogin:doRegister"/>
         </routes>
       </plugin>
     </plugins>
