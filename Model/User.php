@@ -77,7 +77,7 @@ class User extends BaseUser implements UserInterface
 
         $result = [];
         foreach ($names as $name) {
-            $result[] = preg_replace('/[^a-zA-Z0-9]+/', '_', strtoupper($name));
+            $result[] = 'ROLE_' . preg_replace('/[^a-zA-Z0-9]+/', '_', strtoupper($name));
         }
 
         return $result;
