@@ -98,4 +98,9 @@ class User extends BaseUser implements UserInterface
     {
         $this->password = null;
     }
+
+    public static function generateUsername($name)
+    {
+        return $name;
+    }
 }
