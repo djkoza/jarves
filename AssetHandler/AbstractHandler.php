@@ -66,6 +66,6 @@ abstract class AbstractHandler
      */
     protected function getPublicAssetPath($path)
     {
-        return $this->getJarves()->resolvePublicWebPath($path);
+        return '/' . $this->getJarves()->resolvePublicWebPath($path);
     }
 }
