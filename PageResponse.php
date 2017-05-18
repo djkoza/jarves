@@ -1055,10 +1055,10 @@ class PageResponse extends Response
             if ('assetsInfo' === $key || 'assetsInfoBottom' === $key) {
 
                 foreach ($value as $priority => $assetInfosDiff) {
-                    if (!isset($this->assetsInfo[$priority])) {
-                        $this->assetsInfo[$priority] = $assetInfosDiff;
+                    if (!isset($this->$key[$priority])) {
+                        $this->$key[$priority] = $assetInfosDiff;
                     } else {
-                        $this->assetsInfo[$priority] = array_merge($this->assetsInfo[$priority], $assetInfosDiff);
+                        $this->$key[$priority] = array_merge($this->$key[$priority], $assetInfosDiff);
                     }
                 }
 
