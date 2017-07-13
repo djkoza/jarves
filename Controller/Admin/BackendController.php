@@ -130,20 +130,11 @@ class BackendController extends Controller
         /** @var Cacher $cacher */
         $cacher = $this->get('jarves.cache.cacher');
 
-        /** @var \AppKernel $kernel */
-        $kernel = $this->get('kernel');
-
         /** @var Filesystem $localFilesystem */
         $localFilesystem = $this->get('jarves.filesystem.local');
 
-        $cacheDir       = $kernel->getCacheDir();
-        $devCacheDir    = substr($cacheDir, 0, strrpos($cacheDir, DIRECTORY_SEPARATOR)) . DIRECTORY_SEPARATOR . 'dev';
-
-        $localFilesystem->remove($cacheDir);
-        $localFilesystem->mkdir($cacheDir);
-
-        $localFilesystem->remove($devCacheDir);
-        $localFilesystem->mkdir($devCacheDir);
+        $localFilesystem->remove('var/cache');
+        $localFilesystem->mkdir('var/cache');
 
         $localFilesystem->remove('web/cache');
         $localFilesystem->mkdir('web/cache');
