@@ -132,6 +132,8 @@ class Utils
      */
     public function newNewsFeed(Objects $repo, $objectKey, $item, $verb, $message = null)
     {
+        $request = $this->pageStack->getRequest();
+
         $definition = $repo->getDefinition($objectKey);
 
         $itemLabel = '';
@@ -156,6 +158,8 @@ class Utils
             } else {
                 $username = $user->getUsername();
             }
+        }elseif(!empty($request)){
+            $username .= '['.$request->getClientIp().']';
         }
 
         $newsFeed = new \Jarves\Model\NewsFeed();
