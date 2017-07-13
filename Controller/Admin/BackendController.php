@@ -135,8 +135,15 @@ class BackendController extends Controller
 
         /** @var Filesystem $localFilesystem */
         $localFilesystem = $this->get('jarves.filesystem.local');
-        $localFilesystem->remove($kernel->getCacheDir());
-        $localFilesystem->mkdir($kernel->getCacheDir());
+
+        $cacheDir       = $kernel->getCacheDir();
+        $devCacheDir    = substr($cacheDir, 0, strrpos($cacheDir, DIRECTORY_SEPARATOR)) . DIRECTORY_SEPARATOR . 'dev';
+
+        $localFilesystem->remove($cacheDir);
+        $localFilesystem->mkdir($cacheDir);
+
+        $localFilesystem->remove($devCacheDir);
+        $localFilesystem->mkdir($devCacheDir);
 
         $localFilesystem->remove('web/cache');
         $localFilesystem->mkdir('web/cache');
