@@ -57,6 +57,12 @@ services:
          tags:
             - { name: twig.extension }
 
+     jarves.twig.extension.headertag:
+         class: Jarves\Twig\AdditionalHeaderTagExtension
+         arguments: ["@jarves.page_stack"]
+         tags:
+            - { name: twig.extension }
+
      jarves.twig.extension.translate:
          class: Jarves\Twig\TranslateExtension
          arguments: ["@jarves.translator"]
