@@ -40,12 +40,14 @@ class AdditionalHeaderTag extends \Twig_TokenParser
     {
         $lineno = $token->getLine();
 
+        $pageResopnse = $this->pageStack->getPageResponse();
+
         $this->parser->getStream()->expect(\Twig_Token::BLOCK_END_TYPE);
         $body = $this->parser->subparse(array($this, 'decideHeadertagEnd'), true);
         $this->parser->getStream()->expect(\Twig_Token::BLOCK_END_TYPE);
 
-        if($data = $body->getAttribute('data')){
-            $this->pageStack->getPageResponse()->addHeader($data);
+        if($data = $body->getAttribute('data') && $pageResopnse){
+            $pageResopnse->addHeader($data);
         }
     }
 
