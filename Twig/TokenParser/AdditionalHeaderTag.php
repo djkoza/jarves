@@ -15,6 +15,7 @@
 namespace Jarves\Twig\TokenParser;
 
 use Jarves\PageStack;
+use Jarves\Twig\Node\AdditionalHeaderTag as NodeAdditionalHeaderTag;
 
 class AdditionalHeaderTag extends \Twig_TokenParser
 {
@@ -46,9 +47,12 @@ class AdditionalHeaderTag extends \Twig_TokenParser
         $body = $this->parser->subparse(array($this, 'decideHeadertagEnd'), true);
         $this->parser->getStream()->expect(\Twig_Token::BLOCK_END_TYPE);
 
-        if($data = $body->getAttribute('data') && $pageResopnse){
+        $data = $body->getAttribute('data');
+        if($data && $pageResopnse){
             $pageResopnse->addHeader($data);
         }
+
+        return new NodeAdditionalHeaderTag($body, $lineno, $this->getTag());
     }
 
     public function decideHeadertagEnd(\Twig_Token $token)
