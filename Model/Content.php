@@ -23,4 +23,15 @@ class Content extends BaseContent implements ContentInterface
         return parent::setType(strtolower($v));
     }
 
+    public function getImageFileId()
+    {
+        $result = json_decode($this->content);
+
+        if($this->type == 'image' && !empty($result->file)){
+            return $result->file;
+        }
+
+        return null;
+    }
+
 }
