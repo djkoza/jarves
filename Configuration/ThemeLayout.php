@@ -18,9 +18,11 @@ class ThemeLayout extends ThemeContent
 {
     protected $rootName = 'layout';
 
-	protected $attributes = ['key', 'doctype'];
+	protected $attributes = ['key', 'doctype', 'staticPlugins'];
 
 	protected $requiredProperties = ['key', 'file'];
+
+    protected $elementMap = ['staticPlugin' => 'ThemeLayoutStaticPlugin'];
 
 	/**
 	 * A key which is saved in the database for further access of this layout.
@@ -41,6 +43,16 @@ class ThemeLayout extends ThemeContent
 	 * @var string
 	 */
 	protected $doctype;
+
+
+    /**
+     * A array with static plugins - called by Plugin Twig Extension
+     *
+     * Allows use plugin router
+     *
+     * @var array
+     */
+    protected $staticPlugins = array();
 
 	/**
 	 * @param mixed $key
@@ -71,4 +83,20 @@ class ThemeLayout extends ThemeContent
 	{
 		$this->doctype = $doctype;
 	}
+
+    /**
+     * @return array
+     */
+    public function getStaticPlugins()
+    {
+        return $this->staticPlugins;
+    }
+
+    /**
+     * @param ThemeLayoutStaticPlugin[] $staticPlugins
+     */
+    public function setStaticPlugins(array $staticPlugins)
+    {
+        $this->staticPlugins = $staticPlugins;
+    }
 }

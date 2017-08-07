@@ -17,7 +17,7 @@ namespace Jarves\Configuration;
 class Theme extends Model
 {
     protected $attributes = ['id', 'doctype'];
-    protected $elementMap = ['content' => 'ThemeContent', 'layout' => 'ThemeLayout'];
+    protected $elementMap = ['content' => 'ThemeContent', 'layout' => 'ThemeLayout', 'staticPlugin' => 'ThemeLayoutStaticPlugin'];
 
     /**
      * @var string

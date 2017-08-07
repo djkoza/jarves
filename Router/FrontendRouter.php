@@ -275,16 +275,42 @@ class FrontendRouter
         $domain = $this->pageStack->getDomain($page->getDomainId());
         $themeOptions = $domain->getThemeOptions();
 
+        $themeId    = $domain->getTheme();
+        $layoutId   = $page->getLayout();
+
+
+        if(!$theme = $this->jarves->getConfigs()->getTheme($themeId)) {
+            throw new \LogicException(sprintf('Theme `%s` not found.', $themeId));
+        }
+
+        if(!$layout = $theme->getLayoutByKey($layoutId)){
+            throw new \LogicException(sprintf('Layout `%s` not found.', $layoutId));
+        }
+
+        $staticPlugins = $layout->getStaticPlugins();
+
         $this->stopwatch->start('Register Plugin Routes');
         //add all router to current router and fire sub-request
         $cacheKey = 'core/node/plugins-' . $page->getId();
         $plugins = $this->cacher->getDistributedCache($cacheKey);
-
         if (null === $plugins) {
+
             $plugins = ContentQuery::create()
                 ->filterByNodeId($page->getId())
                 ->filterByType('plugin')
                 ->find();
+
+
+            foreach($staticPlugins as $staticPlugin){
+                $content = new Content();
+                $content->setType('plugin');
+                $content->setContent(json_encode(array(
+                    'bundle'    => $staticPlugin->getPluginBundle(),
+                    'plugin'    => $staticPlugin->getPluginKey()
+                )));
+
+                $plugins->set(null, $content);
+            }
 
             foreach($themeOptions as $item){
                 $content = new Content();
